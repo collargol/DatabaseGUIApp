@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace ProjectBasicSQL
 {
-    public partial class FormAddCompetition : Form
+    public partial class FormAddCompetition : FormAdd
     {
-        public FormAddCompetition()
+        public FormAddCompetition() : base()
         {
-            InitializeComponent();
+            this.Text = "FormAddCompetition";
+            //InitializeComponent();
         }
     }
 }

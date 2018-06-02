@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ProjectBasicSQL
 {
-    public partial class FormAdd : Form
+    public abstract partial class FormAdd : Form
     {
         private enum addedItem
         {
@@ -21,11 +21,13 @@ namespace ProjectBasicSQL
             Country,
             Arena
         };
-        
+
         public FormAdd()
         {
             InitializeComponent();
         }
+
+        //virtual protected void SendAddQuery() { }
 
         private void button1_Click(object sender, EventArgs e)
         {

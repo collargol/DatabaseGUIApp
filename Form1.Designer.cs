@@ -65,6 +65,7 @@ namespace ProjectBasicSQL
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(13, 13);
@@ -102,8 +103,9 @@ namespace ProjectBasicSQL
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 5;
-            this.button3.Text = "button3";
+            this.button3.Text = "Show";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -113,6 +115,7 @@ namespace ProjectBasicSQL
             this.button4.TabIndex = 6;
             this.button4.Text = "Add Athlete";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -122,6 +125,7 @@ namespace ProjectBasicSQL
             this.button5.TabIndex = 7;
             this.button5.Text = "Add Competition";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -131,6 +135,7 @@ namespace ProjectBasicSQL
             this.button6.TabIndex = 8;
             this.button6.Text = "Add Country";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -140,6 +145,7 @@ namespace ProjectBasicSQL
             this.button7.TabIndex = 9;
             this.button7.Text = "Add Team";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Form1
             // 
@@ -166,8 +172,9 @@ namespace ProjectBasicSQL
 
 
         #endregion
-        
-        
+
+        private String connectionString;
+
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView1;
