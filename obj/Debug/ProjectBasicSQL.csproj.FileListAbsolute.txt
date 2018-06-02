@@ -1,0 +1,13 @@
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\bin\Debug\ProjectBasicSQL.exe.config
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\bin\Debug\ProjectBasicSQL.exe
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\bin\Debug\ProjectBasicSQL.pdb
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.Form1.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.Properties.Resources.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.csproj.GenerateResource.cache
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.csproj.CoreCompileInputs.cache
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.exe
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.pdb
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormAdd.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormDisplay.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormLogin.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.csprojResolveAssemblyReference.cache

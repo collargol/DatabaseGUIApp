@@ -1,0 +1,3 @@
+admin admin a
+manager manager m
+user user b
