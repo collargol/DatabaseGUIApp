@@ -87,18 +87,13 @@
     <Compile Include="FormAddTeam.Designer.cs">
       <DependentUpon>FormAddTeam.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormDisplay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormDisplay.Designer.cs">
-      <DependentUpon>FormDisplay.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="IQueriesAdd.cs" />
     <Compile Include="LoginHandling.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,8 +104,20 @@
     <EmbeddedResource Include="FormAdd.resx">
       <DependentUpon>FormAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormDisplay.resx">
-      <DependentUpon>FormDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="FormAddArena.resx">
+      <DependentUpon>FormAddArena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddAthlete.resx">
+      <DependentUpon>FormAddAthlete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddCompetition.resx">
+      <DependentUpon>FormAddCompetition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddCountry.resx">
+      <DependentUpon>FormAddCountry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddTeam.resx">
+      <DependentUpon>FormAddTeam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

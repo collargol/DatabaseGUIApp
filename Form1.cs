@@ -19,22 +19,6 @@ namespace ProjectBasicSQL
             FormLogin formLogin = new FormLogin(this);
             formLogin.ShowDialog();
             actualizePermissions();
-            connectionString = "Data Source=MICHAL\\SQLEXPRESS01; " +
-                                "Initial Catalog=homeworkDB;" +
-                                "User id=MICHAL\\Michal;" +
-                                "Trusted_Connection=true";
-            //using (var data = new SqlDataAdapter("SELECT * FROM Athletes", "Data Source=MICHAL\\SQLEXPRESS01; " +
-            //                                                            "Initial Catalog=homeworkDB;" +
-            //                                                            "User id=MICHAL\\Michal;" +
-            //                                                            "Trusted_Connection=true"))
-            //{
-            //    DataTable dataTable = new DataTable();
-            //    data.Fill(dataTable);
-            //    dataGridView1.DataSource = dataTable;
-            //}
-
-
-
         }
         
         private void actualizePermissions()
@@ -102,7 +86,7 @@ namespace ProjectBasicSQL
                     break;
             }
 
-            using (var data = new SqlDataAdapter(query, connectionString))
+            using (var data = new SqlDataAdapter(query, Program.connectionString))
             {
                 DataTable dataTable = new DataTable();
                 data.Fill(dataTable);

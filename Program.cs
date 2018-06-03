@@ -11,6 +11,10 @@ namespace ProjectBasicSQL
     {
 
         static public PermissionLevel Permissions = PermissionLevel.None;
+        static public String connectionString = "Data Source=MICHAL\\SQLEXPRESS01; " +
+                                "Initial Catalog=homeworkDB;" +
+                                "User id=MICHAL\\Michal;" +
+                                "Trusted_Connection=true";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
