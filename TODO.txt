@@ -1,0 +1,5 @@
+0. delete and edit records
+1. refreshing grid view after inserting values
+2. closing addforms after inserting records
+3. possibility to log out and log in again
+4. ...
