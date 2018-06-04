@@ -94,6 +94,44 @@ namespace ProjectBasicSQL
             }
         }
 
+        private String CreateDeleteQueryOnIndex()
+        {
+            String currentTable = comboBox1.SelectedItem.ToString();
+            using (var conn = new SqlConnection(Program.connectionString))
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("select column_name from information_schema.columns where table_name = '" + currentTable + "'", conn);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    reader.Read();
+                    MessageBox.Show(reader[0].ToString());
+                    return "delete from " + currentTable + " where " + reader[0].ToString() + " = ";
+                }
+            }
+            
+            //switch (comboBox1.SelectedItem.ToString())
+            //{
+            //    case "Arenas":
+
+            //        break;
+            //    case "Athletes":
+
+            //        break;
+            //    case "Competitions":
+
+            //        break;
+            //    case "Countries":
+
+            //        break;
+            //    case "Teams":
+
+            //        break;
+            //    default:
+
+            //        break;
+            //}
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             FormAddArena formAdd = new FormAddArena();
@@ -139,6 +177,43 @@ namespace ProjectBasicSQL
         {
             FormAddTeam formAdd = new FormAddTeam();
             formAdd.ShowDialog();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null || dataGridView1.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Nothing selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                List<string> rowIndexesToDelete = new List<string>();
+                foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+                {
+                    if (!rowIndexesToDelete.Contains(cell.RowIndex.ToString()))
+                    {
+                        rowIndexesToDelete.Add(dataGridView1.Rows[cell.RowIndex].Cells[0].Value.ToString());
+                        MessageBox.Show(dataGridView1.Rows[cell.RowIndex].Cells[0].Value.ToString() + " --- " + dataGridView1.Rows[cell.RowIndex].Cells[1].Value.ToString());
+                    }
+                }
+                try
+                {
+                    using (var conn = new SqlConnection(Program.connectionString))
+                    {
+                        conn.Open();
+                        foreach (String index in rowIndexesToDelete)
+                        {
+                            String query = CreateDeleteQueryOnIndex() + index;
+                            SqlCommand command = new SqlCommand(query, conn);
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Deleting failed. One or more deletions terminated because of existing references.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

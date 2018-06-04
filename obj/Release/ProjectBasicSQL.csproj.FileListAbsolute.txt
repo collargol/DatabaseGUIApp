@@ -1,0 +1,17 @@
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\bin\Release\ProjectBasicSQL.exe.config
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\bin\Release\ProjectBasicSQL.exe
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\bin\Release\ProjectBasicSQL.pdb
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.csprojResolveAssemblyReference.cache
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.Form1.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.FormAdd.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.FormAddArena.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.FormAddAthlete.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.FormAddCompetition.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.FormAddCountry.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.FormAddTeam.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.FormLogin.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.Properties.Resources.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.csproj.GenerateResource.cache
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.csproj.CoreCompileInputs.cache
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.exe
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Release\ProjectBasicSQL.pdb
