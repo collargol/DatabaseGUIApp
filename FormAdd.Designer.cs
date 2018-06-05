@@ -63,10 +63,13 @@
             this.Text = "FormAdd";
             this.ResumeLayout(false);
 
+
         }
 
         #endregion
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+
+        protected Form1 parentForm;
     }
 }

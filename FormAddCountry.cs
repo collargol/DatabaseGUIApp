@@ -14,7 +14,7 @@ namespace ProjectBasicSQL
 {
     public partial class FormAddCountry : FormAdd, IQueriesAdd
     {
-        public FormAddCountry() : base()
+        public FormAddCountry(Form1 parent) : base(parent)
         {
             this.Text = "FormAddCountry";
             InitializeComponent();
@@ -40,6 +40,11 @@ namespace ProjectBasicSQL
             {
                 SendAddQuery(CreateAddQuery());
                 textBox1.Text = "";
+                parentForm.actualizeDataGridView("Countries");
+                if (parentForm.closingAddForms)
+                {
+                    Close();
+                }
             }
             catch (SqlException exc)
             {

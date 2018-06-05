@@ -14,7 +14,7 @@ namespace ProjectBasicSQL
 {
     public partial class FormAddCompetition : FormAdd, IQueriesAdd
     {
-        public FormAddCompetition() : base()
+        public FormAddCompetition(Form1 parent) : base(parent)
         {
             this.Text = "FormAddCompetition";
             InitializeComponent();
@@ -43,8 +43,20 @@ namespace ProjectBasicSQL
             else
             {
                 String date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-                MessageBox.Show(date);
-                return "insert into Competitions values('" + textBox1.Text + "', " + (comboBox1.SelectedIndex + 1).ToString() + ", '" + date + "');";
+                String arenaID = "";
+                // get ID of selected arena
+                using (var conn = new SqlConnection(Program.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("select * from Arenas where name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        arenaID = reader[0].ToString();
+                    }
+                }
+                //
+                return "insert into Competitions values('" + textBox1.Text + "', " + arenaID + ", '" + date + "');";
             }
             // insert into Competitions values ('World Cup', 1, '20190819');
         }
@@ -57,6 +69,11 @@ namespace ProjectBasicSQL
                 SendAddQuery(CreateAddQuery());
                 textBox1.Text = "";
                 comboBox1.SelectedItem = null;
+                parentForm.actualizeDataGridView("Competitions");
+                if (parentForm.closingAddForms)
+                {
+                    Close();
+                }
             }
             catch (SqlException exc)
             {

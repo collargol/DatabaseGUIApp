@@ -14,7 +14,7 @@ namespace ProjectBasicSQL
 {
     public partial class FormAddArena : FormAdd, IQueriesAdd
     {
-        public FormAddArena() : base()
+        public FormAddArena(Form1 parent) : base(parent)
         {
             this.Text = "FormAddArena";
             InitializeComponent();
@@ -43,7 +43,20 @@ namespace ProjectBasicSQL
             }
             else
             {
-                return "insert into Arenas values ('" + textBox1.Text + "', " + (comboBox1.SelectedIndex + 1).ToString() + ");";
+                String countryID = "";
+                // get ID of selected country
+                using (var conn = new SqlConnection(Program.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("select * from Countries where name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        countryID = reader[0].ToString();
+                    }
+                }
+                //
+                return "insert into Arenas values ('" + textBox1.Text + "', " + countryID + ");";
             }
         }
 
@@ -55,6 +68,11 @@ namespace ProjectBasicSQL
                 SendAddQuery(CreateAddQuery());
                 textBox1.Text = "";
                 comboBox1.SelectedItem = null;
+                parentForm.actualizeDataGridView("Arenas");
+                if (parentForm.closingAddForms)
+                {
+                    Close();
+                }
             }
             catch (SqlException exc)
             {

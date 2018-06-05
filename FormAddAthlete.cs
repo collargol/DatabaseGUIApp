@@ -14,7 +14,7 @@ namespace ProjectBasicSQL
 {
     public partial class FormAddAthlete : FormAdd, IQueriesAdd
     {
-        public FormAddAthlete() : base()
+        public FormAddAthlete(Form1 parent) : base(parent)
         {
             this.Text = "FormAddAthlete";
             InitializeComponent();
@@ -43,7 +43,20 @@ namespace ProjectBasicSQL
             }
             else
             {
-                return "insert into Athletes(name, team, heigth, weight) values('" + textBox1.Text + "', " + (comboBox1.SelectedIndex + 1).ToString() + ", " + textBox2.Text + ", " + textBox3.Text + ");";
+                String teamID = "";
+                // get ID of selected team
+                using (var conn = new SqlConnection(Program.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("select * from Teams where name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        teamID = reader[0].ToString();
+                    }
+                }
+                //
+                return "insert into Athletes(name, team, heigth, weight) values('" + textBox1.Text + "', " + teamID + ", " + textBox2.Text + ", " + textBox3.Text + ");";
             }
             //insert into Athletes(name, team, heigth, weight) values('Ricky', 1, 1.80, 105);
         }
@@ -58,6 +71,11 @@ namespace ProjectBasicSQL
                 textBox2.Text = "";
                 textBox3.Text = "";
                 comboBox1.SelectedItem = null;
+                parentForm.actualizeDataGridView("Athletes");
+                if (parentForm.closingAddForms)
+                {
+                    Close();
+                }
             }
             catch (SqlException exc)
             {

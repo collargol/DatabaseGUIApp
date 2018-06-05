@@ -24,9 +24,16 @@ namespace ProjectBasicSQL
             Arena
         };
 
+        // required for proper working inheriting forms
         public FormAdd()
         {
+
+        }
+
+        public FormAdd(Form1 parent)
+        {
             InitializeComponent();
+            parentForm = parent;
         }
 
         public void SendAddQuery(String query)

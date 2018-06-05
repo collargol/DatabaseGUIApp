@@ -14,7 +14,7 @@ namespace ProjectBasicSQL
 {
     public partial class FormAddTeam : FormAdd, IQueriesAdd
     {
-        public FormAddTeam() : base()
+        public FormAddTeam(Form1 parent) : base(parent)
         {
             this.Text = "FormAddTeam";
             InitializeComponent();
@@ -42,7 +42,20 @@ namespace ProjectBasicSQL
             }
             else
             {
-                return "insert into Teams values('" + textBox1.Text + "', " + (comboBox1.SelectedIndex + 1).ToString() + ");";
+                String countryID = "";
+                // get ID of selected country
+                using (var conn = new SqlConnection(Program.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("select * from Countries where name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        countryID = reader[0].ToString();
+                    }
+                }
+                //
+                return "insert into Teams values('" + textBox1.Text + "', " + countryID + ");";
             }
         }
 
@@ -54,6 +67,11 @@ namespace ProjectBasicSQL
                 SendAddQuery(CreateAddQuery());
                 textBox1.Text = "";
                 comboBox1.SelectedItem = null;
+                parentForm.actualizeDataGridView("Teams");
+                if (parentForm.closingAddForms)
+                {
+                    Close();
+                }
             }
             catch (SqlException exc)
             {
@@ -64,5 +82,6 @@ namespace ProjectBasicSQL
                 MessageBox.Show(exc.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
     }
 }

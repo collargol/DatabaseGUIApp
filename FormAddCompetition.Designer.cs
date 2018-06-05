@@ -63,11 +63,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 89);
+            this.label2.Location = new System.Drawing.Point(37, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Country:";
+            this.label2.Text = "Arena:";
             // 
             // dateTimePicker1
             // 
@@ -98,12 +98,6 @@
             this.Controls.Add(this.textBox1);
             this.Name = "FormAddCompetition";
             this.Text = "FormAddCompetition";
-            this.Controls.SetChildIndex(this.textBox1, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.comboBox1, 0);
-            this.Controls.SetChildIndex(this.label2, 0);
-            this.Controls.SetChildIndex(this.dateTimePicker1, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

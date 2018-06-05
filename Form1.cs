@@ -19,6 +19,7 @@ namespace ProjectBasicSQL
             FormLogin formLogin = new FormLogin(this);
             formLogin.ShowDialog();
             actualizePermissions();
+            closingAddForms = false;
         }
         
         private void actualizePermissions()
@@ -48,7 +49,7 @@ namespace ProjectBasicSQL
 
         }
 
-        private void actualizeDataGridView(String tableName)
+        public void actualizeDataGridView(String tableName)
         {
             String query = "";
             switch (tableName)
@@ -132,12 +133,6 @@ namespace ProjectBasicSQL
             //}
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            FormAddArena formAdd = new FormAddArena();
-            formAdd.ShowDialog();
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             Close();    // form closes
@@ -155,27 +150,34 @@ namespace ProjectBasicSQL
             }
         }
 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormAddArena formAdd = new FormAddArena(this);
+            formAdd.ShowDialog();
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
-            FormAddAthlete formAdd = new FormAddAthlete();
+            FormAddAthlete formAdd = new FormAddAthlete(this);
             formAdd.ShowDialog();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            FormAddCompetition formAdd = new FormAddCompetition();
+            FormAddCompetition formAdd = new FormAddCompetition(this);
             formAdd.ShowDialog();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FormAddCountry formAdd = new FormAddCountry();
+            FormAddCountry formAdd = new FormAddCountry(this);
             formAdd.ShowDialog();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            FormAddTeam formAdd = new FormAddTeam();
+            FormAddTeam formAdd = new FormAddTeam(this);
             formAdd.ShowDialog();
         }
 
@@ -208,12 +210,18 @@ namespace ProjectBasicSQL
                             command.ExecuteNonQuery();
                         }
                     }
+                    actualizeDataGridView(comboBox1.SelectedItem.ToString());
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show("Deleting failed. One or more deletions terminated because of existing references.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Deleting failed. One or more deletions terminated because of existing references.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            closingAddForms = checkBox1.Checked;
         }
     }
 }

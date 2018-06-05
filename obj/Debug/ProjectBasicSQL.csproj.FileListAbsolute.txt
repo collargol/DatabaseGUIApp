@@ -9,9 +9,9 @@ C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBa
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.pdb
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormAdd.resources
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormLogin.resources
-C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.csprojResolveAssemblyReference.cache
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormAddArena.resources
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormAddAthlete.resources
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormAddCompetition.resources
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormAddCountry.resources
 C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.FormAddTeam.resources
+C:\Users\Michał\Documents\Visual Studio 2017\Projects\ProjectBasicSQL\ProjectBasicSQL\obj\Debug\ProjectBasicSQL.csprojResolveAssemblyReference.cache
