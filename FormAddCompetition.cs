@@ -61,18 +61,53 @@ namespace ProjectBasicSQL
             // insert into Competitions values ('World Cup', 1, '20190819');
         }
 
+        public string CreateEditQuery()
+        {
+            if (textBox1.Text.Equals("") || comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Missing values", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new InvalidDataException("No values provided");
+            }
+            else
+            {
+                String date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
+                String arenaID = "";
+                // get ID of selected arena
+                using (var conn = new SqlConnection(Program.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("select * from Arenas where name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        arenaID = reader[0].ToString();
+                    }
+                }
+                //
+                return "insert into Competitions(compID, competitions_name, arena, compets_date) values(?, '" + textBox1.Text + "', " + arenaID + ", '" + date + "');";
+            }
+        }
+
         protected override void button2_Click(object sender, EventArgs e)
         {
             //base.button2_Click(sender, e);
             try
             {
-                SendAddQuery(CreateAddQuery());
-                textBox1.Text = "";
-                comboBox1.SelectedItem = null;
-                parentForm.actualizeDataGridView("Competitions");
-                if (parentForm.closingAddForms)
+                if (ButtonName.Equals("Edit"))
                 {
+                    parentForm.editItemQuery = CreateEditQuery();
                     Close();
+                }
+                else
+                {
+                    SendAddQuery(CreateAddQuery());
+                    textBox1.Text = "";
+                    comboBox1.SelectedItem = null;
+                    parentForm.actualizeDataGridView("Competitions");
+                    if (parentForm.closingAddForms)
+                    {
+                        Close();
+                    }
                 }
             }
             catch (SqlException exc)

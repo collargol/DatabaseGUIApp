@@ -20,6 +20,7 @@ namespace ProjectBasicSQL
             formLogin.ShowDialog();
             actualizePermissions();
             closingAddForms = false;
+            editItemQuery = "";
         }
         
         private void actualizePermissions()
@@ -34,10 +35,10 @@ namespace ProjectBasicSQL
                     button5.Enabled = false;
                     button6.Enabled = false;
                     button7.Enabled = false;
-
+                    button8.Enabled = false;
                     break;
                 case PermissionLevel.Manager:
-
+                    button8.Enabled = false;
                     break;
                 case PermissionLevel.Admin:
 
@@ -105,37 +106,15 @@ namespace ProjectBasicSQL
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     reader.Read();
-                    MessageBox.Show(reader[0].ToString());
                     return "delete from " + currentTable + " where " + reader[0].ToString() + " = ";
                 }
             }
             
-            //switch (comboBox1.SelectedItem.ToString())
-            //{
-            //    case "Arenas":
-
-            //        break;
-            //    case "Athletes":
-
-            //        break;
-            //    case "Competitions":
-
-            //        break;
-            //    case "Countries":
-
-            //        break;
-            //    case "Teams":
-
-            //        break;
-            //    default:
-
-            //        break;
-            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();    // form closes
+            Close();   
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -150,6 +129,7 @@ namespace ProjectBasicSQL
             }
         }
 
+        // add forms
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -181,6 +161,8 @@ namespace ProjectBasicSQL
             formAdd.ShowDialog();
         }
 
+        // delete item
+
         private void button8_Click(object sender, EventArgs e)
         {
             if (dataGridView1.DataSource == null || dataGridView1.SelectedCells.Count == 0)
@@ -195,7 +177,6 @@ namespace ProjectBasicSQL
                     if (!rowIndexesToDelete.Contains(cell.RowIndex.ToString()))
                     {
                         rowIndexesToDelete.Add(dataGridView1.Rows[cell.RowIndex].Cells[0].Value.ToString());
-                        MessageBox.Show(dataGridView1.Rows[cell.RowIndex].Cells[0].Value.ToString() + " --- " + dataGridView1.Rows[cell.RowIndex].Cells[1].Value.ToString());
                     }
                 }
                 try
@@ -219,9 +200,115 @@ namespace ProjectBasicSQL
             }
         }
 
+        // actualize options 
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             closingAddForms = checkBox1.Checked;
+        }
+
+        // edit item
+        
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("No cell selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                //MessageBox.Show(dataGridView1.SelectedRows.Count.ToString());
+                //List<string> rowIndexesToEdit = new List<string>();
+                //foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+                //{
+                //    if (!rowIndexesToEdit.Contains(cell.RowIndex.ToString()))
+                //    {
+                //        rowIndexesToEdit.Add(dataGridView1.Rows[cell.RowIndex].Cells[0].Value.ToString());
+                //    }
+                //}
+                for (int i = 0; i < dataGridView1.SelectedCells.Count; i++)
+                {
+                    if (i > 0 && (dataGridView1.SelectedCells[i].RowIndex != dataGridView1.SelectedCells[i - 1].RowIndex))
+                    {
+                        MessageBox.Show("More than one item selected", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                String indexToEdit = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
+                String tableName = comboBox1.SelectedItem.ToString();
+                // open form to edit
+                OpenEditForm(tableName);
+                //
+                if (editItemQuery.Equals(""))
+                {
+                    MessageBox.Show("Edit query is empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        using (var conn = new SqlConnection(Program.connectionString))
+                        {
+                            conn.Open();
+                            //
+                            SqlCommand commandDelete = new SqlCommand(CreateDeleteQueryOnIndex() + indexToEdit, conn);
+                            commandDelete.ExecuteNonQuery();
+                            //
+                            SqlCommand commandOn = new SqlCommand("set identity_insert " + tableName + " on", conn);
+                            commandOn.ExecuteNonQuery();
+                            //
+                            SqlCommand commandInsert = new SqlCommand(editItemQuery.Replace("?", indexToEdit), conn);
+                            commandInsert.ExecuteNonQuery();
+                            //
+                            SqlCommand commandOff = new SqlCommand("set identity_insert " + tableName + " off", conn);
+                            commandOff.ExecuteNonQuery();
+                        }
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("Item cannot be edited due to existed references", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            
+            }
+            
+        }
+
+        private void OpenEditForm(String tableName)
+        {
+            switch (tableName)
+            {
+                case "Athletes":
+                    FormAddAthlete formAddAthlete = new FormAddAthlete(this);
+                    formAddAthlete.ButtonName = "Edit";
+                    formAddAthlete.ShowDialog();
+                    break;
+                case "Arenas":
+                    FormAddArena formAddArena = new FormAddArena(this);
+                    formAddArena.ButtonName = "Edit";
+                    formAddArena.ShowDialog();
+                    break;
+                case "Competitions":
+                    FormAddCompetition formAddCompetition = new FormAddCompetition(this);
+                    formAddCompetition.ButtonName = "Edit";
+                    formAddCompetition.ShowDialog();
+                    break;
+                case "Countries":
+                    FormAddCountry formAddCountry = new FormAddCountry(this);
+                    formAddCountry.ButtonName = "Edit";
+                    formAddCountry.ShowDialog();
+                    break;
+                case "Teams":
+                    FormAddTeam formAddTeam = new FormAddTeam(this);
+                    formAddTeam.ButtonName = "Edit";
+                    formAddTeam.ShowDialog();
+                    break;
+                default:
+                    MessageBox.Show("Wrong table name in combobox selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
         }
     }
 }

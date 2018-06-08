@@ -48,9 +48,10 @@ namespace ProjectBasicSQL
                 using (var conn = new SqlConnection(Program.connectionString))
                 {
                     conn.Open();
-                    SqlCommand command = new SqlCommand("select * from Teams where name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                    SqlCommand command = new SqlCommand("select * from Teams where team_name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        MessageBox.Show("IN USING");
                         reader.Read();
                         teamID = reader[0].ToString();
                     }
@@ -61,20 +62,54 @@ namespace ProjectBasicSQL
             //insert into Athletes(name, team, heigth, weight) values('Ricky', 1, 1.80, 105);
         }
 
+        public string CreateEditQuery()
+        {
+            if (textBox1.Text.Equals("") || textBox2.Text.Equals("") || textBox3.Text.Equals("") || comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Missing values", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new InvalidDataException("No values provided");
+            }
+            else
+            {
+                String teamID = "";
+                // get ID of selected team
+                using (var conn = new SqlConnection(Program.connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("select * from Teams where team_name = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        teamID = reader[0].ToString();
+                    }
+                }
+                //
+                return "insert into Athletes(athleteID, name, team, heigth, weight) values(?, '" + textBox1.Text + "', " + teamID + ", " + textBox2.Text + ", " + textBox3.Text + ");";
+            }
+        }
+
         protected override void button2_Click(object sender, EventArgs e)
         {
             //base.button2_Click(sender, e);
             try
             {
-                SendAddQuery(CreateAddQuery());
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                comboBox1.SelectedItem = null;
-                parentForm.actualizeDataGridView("Athletes");
-                if (parentForm.closingAddForms)
+                if (ButtonName.Equals("Edit"))
                 {
+                    parentForm.editItemQuery = CreateEditQuery();
                     Close();
+                }
+                else
+                {
+                    SendAddQuery(CreateAddQuery());
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    comboBox1.SelectedItem = null;
+                    parentForm.actualizeDataGridView("Athletes");
+                    if (parentForm.closingAddForms)
+                    {
+                        Close();
+                    }
                 }
             }
             catch (SqlException exc)

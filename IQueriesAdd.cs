@@ -9,5 +9,6 @@ namespace ProjectBasicSQL
     interface IQueriesAdd
     {
         String CreateAddQuery();
+        String CreateEditQuery();
     }
 }

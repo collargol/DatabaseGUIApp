@@ -53,6 +53,12 @@ namespace ProjectBasicSQL
             }
         }
 
+        public String ButtonName
+        {
+            get { return button2.Text; }
+            set { button2.Text = value; }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
